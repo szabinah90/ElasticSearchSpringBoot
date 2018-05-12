@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Article By ID</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Selected Article</h1>
+<p th:inline="text">ID: [[${article.id}]]</p>
+<p th:inline="text">URL: [[${article.url}]]</p>
+<p th:inline="text">Author: <a th:href="@{'/android-articles/authors/' + ${article.author}}">[[${article.author}]]</a></p>
+<p th:inline="text">Title: [[${article.title}]]</p>
+<p th:inline="text">Date Published: [[${article.date_published}]]</p>
+<p th:inline="text">Content: [[${article.content}]]</p>
+<br />
+<input type="submit" value="Edit" th:action="@{/android-articles/ids/' + ${article.id} + '/edit'}" formmethod="get" />
+<input type="button" value="Delete" />
+<input type="button" value="Back to Home" onclick="location.href='/android-articles/'"/>
+</body>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Articles By Keyword(s)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Articles Matching Your Search Keyword(s)</h1>
+<ol>
+    <th:block th:each="article : ${articles}">
+        <li th:inline="text">ID: <a th:href="@{'/android-articles/ids/' + ${article.id}}">[[${article.id}]]</a></li>
+        <ul>
+            <li th:inline="text">URL: [[${article.url}]]</li>
+            <li th:inline="text">Author: <a th:href="@{'/android-articles/authors/' + ${article.author}}">[[${article.author}]]</a></li>
+            <li th:inline="text">Title: [[${article.title}]]</li>
+            <li th:inline="text">Date Published: [[${article.date_published}]]</li>
+            <li th:inline="text">Content: [[${article.content}]]</li>
+        </ul>
+        <br/>
+    </th:block>
+</ol>
+<br />
+<input type="button" value="Back to Home" onclick="location.href='/android-articles/'"/>
+</body>
+</html>

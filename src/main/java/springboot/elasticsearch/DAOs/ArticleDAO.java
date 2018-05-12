@@ -1,4 +1,4 @@
-package springboot.elasticsearch.dao;
+package springboot.elasticsearch.DAOs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.ElasticsearchException;
@@ -8,10 +8,11 @@ import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.stereotype.Repository;
-import springboot.elasticsearch.model.Article;
+import springboot.elasticsearch.models.Article;
 
 import java.io.IOException;
 import java.util.Map;
@@ -51,10 +52,10 @@ public class ArticleDAO {
         SearchRequest searchRequest = new SearchRequest(INDEX);
         searchRequest.types(TYPE);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+        searchSourceBuilder.query(QueryBuilders.matchAllQuery()).size(10000);
         searchRequest.source(searchSourceBuilder);
 
-        SearchHits allArticles = null;
+        SearchHits allArticles = new SearchHits(new SearchHit[0], 0, 0);
 
         try {
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest);
@@ -74,7 +75,7 @@ public class ArticleDAO {
                 .size(10000);
         searchRequest.source(searchSourceBuilder);
 
-        SearchHits matches = null;
+        SearchHits matches = new SearchHits(new SearchHit[0], 0, 0);
 
         try {
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest);

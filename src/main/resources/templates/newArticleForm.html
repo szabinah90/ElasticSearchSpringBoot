@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add an Article</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<h1>Add an Article</h1>
+<form action="#" th:action="@{/android-articles/confirm}" th:object="${newArticle}" method="post"> <!-- th:action: ABSOLUTE ROUTE -->
+    <label>Enter Author: </label>
+    <br />
+    <input type="text" th:field="*{author}">
+    <br />
+    <label>Enter Title: </label>
+    <br />
+    <input type="text" th:field="*{title}">
+    <br />
+    <label>Enter URL: </label>
+    <br />
+    <input type="text" th:field="*{url}">
+    <br />
+    <label>Select date: </label>
+    <br />
+    <input type="date" th:field="*{date_published}">
+    <br />
+    <label>Enter Content: </label>
+    <br />
+    <input type="text" th:field="*{content}">
+    <br />
+    <input type="submit" value="Submit" />
+    <input type="button" value="Back to Home" onclick="location.href='/android-articles/'"/>
+</form>
+</body>
+</html>

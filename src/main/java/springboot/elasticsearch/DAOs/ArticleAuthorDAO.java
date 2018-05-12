@@ -1,4 +1,4 @@
-package springboot.elasticsearch.dao;
+package springboot.elasticsearch.DAOs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.elasticsearch.action.search.SearchRequest;
@@ -30,17 +30,17 @@ public class ArticleAuthorDAO {
         this.objectMapper = objectMapper;
     }
 
-    public SearchHits getArticleByAuthor(String author) {
+    public SearchHits getArticlesByAuthor(String author) {
         SearchRequest searchRequest = new SearchRequest(INDEX);
         searchRequest.types(TYPE);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(QueryBuilders
                 .matchQuery("author", author)
                 .fuzziness(Fuzziness.AUTO))
-                .size(60);
+                .size(10000);
         searchRequest.source(searchSourceBuilder);
 
-        SearchHits hits = null;
+        SearchHits hits = new SearchHits(new SearchHit[0], 0, 0);
 
         try {
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest);
@@ -62,7 +62,7 @@ public class ArticleAuthorDAO {
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
         searchSourceBuilder.query(QueryBuilders
                 .matchAllQuery())
-                .size(60);
+                .size(10000);
         searchSourceBuilder.fetchSource(includeFields, excludeFields);
         searchRequest.source(searchSourceBuilder);
 

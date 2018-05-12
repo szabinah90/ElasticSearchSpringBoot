@@ -1,6 +1,7 @@
-package springboot.elasticsearch.model;
+package springboot.elasticsearch.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -11,8 +12,9 @@ public class Article {
     private String author;
     private String title;
     private String url;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_published;
-    private String context;
+    private String content;
 
     public String getId() {
         return id;
@@ -54,11 +56,23 @@ public class Article {
         this.date_published = date_published;
     }
 
-    public String getContext() {
-        return context;
+    public String getContent() {
+        return content;
     }
 
-    public void setContext(String context) {
-        this.context = context;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id='" + id + '\'' +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", date_published=" + date_published +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

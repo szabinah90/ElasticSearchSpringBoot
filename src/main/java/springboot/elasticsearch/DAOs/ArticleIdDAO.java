@@ -1,4 +1,4 @@
-package springboot.elasticsearch.dao;
+package springboot.elasticsearch.DAOs;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,7 +11,7 @@ import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.stereotype.Repository;
-import springboot.elasticsearch.model.Article;
+import springboot.elasticsearch.models.Article;
 
 import java.util.HashMap;
 import java.util.Map;
